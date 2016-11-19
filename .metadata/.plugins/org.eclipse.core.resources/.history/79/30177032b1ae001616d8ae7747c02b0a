@@ -28,7 +28,6 @@ public class Main {
 	// Background Image
 	final static File bg = new File("../Screen_for_SoundWaves.png");
 	
-	// Sound Files
 	final static File drumNoise = new File("../SoundFiles/Drum/Snare_Drum.wav");
 	final static File golfNoise = new File("../SoundFiles/golf_swing.wav"); 
 	final static File baboon1 = new File("../SoundFiles/wav/baboon1.wav");
@@ -89,42 +88,12 @@ public class Main {
             public void keyPressed(KeyEvent e) {
                 switch(e.getKeyChar())
                 {
-                case 'f':
-                	playSound(koala);
-                	break;
-                	case 'h':
-                	playSound(golfball);
-                	break;
-                	case 'y':
-                	playSound(dSHAKE);
-                	break;
-                	case 'q':
-                	playSound(Cheetah2);
-                	break;
-                	case 'w':
-                	playSound(bearroar);
-                	break;
-                	case 'e':
-                	playSound(camel2);
-                	break;
-                	case 'r':
-                	playSound(bowling2);
-                	break;
-                	case 't':
-                	playSound(bark);
-                	break;
-                	case 'a':
-                	playSound(ballhitcheer);
-                	break;
-                	case 's':
-                	playSound(baboon1);
-                	break;
                 	case 'd':
-                	playSound(drumNoise);
-                	break;
+                		playSound(drumNoise);
+                		break;
                 	case 'g':
-                	playSound(golfNoise);
-                	break;
+                		playSound(golfNoise);
+                		break;
                 }
             }
 
