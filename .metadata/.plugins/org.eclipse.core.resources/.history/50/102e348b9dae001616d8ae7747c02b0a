@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.concurrent.TimeUnit;
+
+import javax.sound.sampled.*;
+
+public class Main {
+
+	final static File drumNoise = new File("../SoundFiles/Drum/Snare_Drum.wav");
+	final static File golfNoise = new File("../SoundFiles/glf_swng.wav"); 
+
+	public static void main(String[] args) throws Exception 
+	{
+		TimeUnit.MILLISECONDS.sleep(100);
+		playSound(golfNoise);
+		
+		while (true)
+		{
+			playSound(drumNoise);
+			TimeUnit.MILLISECONDS.sleep(1000);
+		}
+		
+	}
+	
+	public static void playSound(File f)
+	{	
+		try {
+		    AudioInputStream stream;
+		    AudioFormat format;
+		    DataLine.Info info;
+		    Clip clip;
+
+		    stream = AudioSystem.getAudioInputStream(f);
+		    format = stream.getFormat();
+		    info = new DataLine.Info(Clip.class, format);
+		    clip = (Clip) AudioSystem.getLine(info);
+		    clip.open(stream);
+		    clip.start();
+		}
+		catch (Exception e) {
+		  e.printStackTrace();
+		  System.exit(1);		
+        }
+	}
+}

@@ -1,0 +1,57 @@
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.Line;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+public class Main extends Object implements LineListener {
+	final static File drumNoise = new File("../SoundFiles/Drum/Snare_Drum.wav");
+	final static File golfNoise = new File("../SoundFiles/glf_swng.wav"); 
+	Clip clip;
+
+  public static void main(String[] args) throws Exception {
+    Main s = new Main();
+  }
+
+  public Main() throws Exception 
+  {
+	while (true)
+	{
+    playSound(drumNoise);
+	}
+    
+    TimeUnit.SECONDS.sleep(1);
+  }
+
+  public void playSound(File f) throws LineUnavailableException, UnsupportedAudioFileException, IOException
+  {
+	Line.Info linfo = new Line.Info(Clip.class);
+	Line line = AudioSystem.getLine(linfo);
+	clip = (Clip) line;
+	clip.addLineListener(this);
+	AudioInputStream ais = AudioSystem.getAudioInputStream(f);
+	clip.open(ais);
+	clip.start();
+  }
+  
+  public void update(LineEvent le)
+  {
+    LineEvent.Type type = le.getType();
+
+    if (type == LineEvent.Type.CLOSE) {
+      System.out.println("CLOSE");
+      System.exit(0);
+    }
+    else if (type == LineEvent.Type.STOP) {
+      System.out.println("STOP");
+      clip.close();
+    }
+  }
+}
