@@ -1,0 +1,29 @@
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.SourceDataLine;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception 
+	{
+	    // open the sound file as a Java input stream
+	    String soundFile = "SoundFiles/glf+swng.mp3";
+	    InputStream in = new FileInputStream(soundFile);
+
+	    // create an audiostream from the inputstream
+	    AudioStream audioStream = new AudioStream(in);
+
+	    // play the audio clip with the audioplayer class
+	    AudioPlayer.player.start(audioStream);
+
+	}
+
+}
