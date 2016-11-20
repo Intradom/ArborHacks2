@@ -27,8 +27,8 @@ public class Main extends JPanel
     final Image stopDrumSOutline = ImageIO.read(new File("../stop_record_replay_outline.png"));
     final Image replayDrumSOutline = ImageIO.read(new File("../stop_record_replay_outline.png"));
     final Image loopDrumSOutline = ImageIO.read(new File("../loop_button_outline.png"));
-    final Image tempoUpDrumSOutline = ImageIO.read(new File("../tempo_up-and-down_outline.png"));
-    final Image tempoDownDrumSOutline = ImageIO.read(new File("../tempo_up-and-down_outline.png"));
+    final Image tempoUpDrumSOutline = ImageIO.read(new File("../tempoup_down_loop_switch_outline.png"));
+    final Image tempoDownDrumSOutline = ImageIO.read(new File("../tempoup_down_loop_switch_outline.png"));
     final Image switchDrumSOutline = ImageIO.read(new File("../switch_outline.png"));
     final Image hiHatDrumSOutline = ImageIO.read(new File("../new_hihatcymbal_outline.png"));
     final Image snareDrumSOutline = ImageIO.read(new File("../new_snaredrum_outline.png"));
@@ -44,9 +44,9 @@ public class Main extends JPanel
     final Image recordPianoSOutline = ImageIO.read(new File("../stop_record_replay_outline.png"));
     final Image stopPianoSOutline = ImageIO.read(new File("../stop_record_replay_outline.png"));
     final Image replayPianoSOutline = ImageIO.read(new File("../stop_record_replay_outline.png"));
-    final Image loopPianoSOutline = ImageIO.read(new File("../loop_button_outline.png"));
-    final Image tempoUPPianoSOutline = ImageIO.read(new File("../tempo_up-and-down_outline.png"));
-    final Image tempoDownPianoSOutline = ImageIO.read(new File("../tempo_up-and-down_outline.png"));
+    final Image loopPianoSOutline = ImageIO.read(new File("../tempoup_down_loop_switch_outline.png"));
+    final Image tempoUPPianoSOutline = ImageIO.read(new File("../tempoup_down_loop_switch_outline.png"));
+    final Image tempoDownPianoSOutline = ImageIO.read(new File("../tempoup_down_loop_switch_outline.png"));
     final Image switchPianoSOutline = ImageIO.read(new File("../switch_outline.png"));
     final Image ku1PianoSOutline = ImageIO.read(new File("../black_key_outline.png"));
     final Image ku2PianoSOutline = ImageIO.read(new File("../black_key_outline.png"));
@@ -199,45 +199,45 @@ public class Main extends JPanel
                 	
 	                // Outline Toggles
                 	if (recordPianoSOutlineOn)
-	                    g.drawImage(recordPianoSOutline, 882, 482, null);
+	                    g.drawImage(recordPianoSOutline, 142, 625, null);
 	                if (stopPianoSOutlineOn)
-	                    g.drawImage(stopPianoSOutline, 882, 482, null);
+	                    g.drawImage(stopPianoSOutline, 0, 625, null);
 	                if (replayPianoSOutlineOn)
-	                    g.drawImage(replayPianoSOutline, 882, 482, null);
+	                    g.drawImage(replayPianoSOutline, 288, 625, null);
 	                if (loopPianoSOutlineOn)
-	                    g.drawImage(loopPianoSOutline, 882, 482, null);
+	                    g.drawImage(loopPianoSOutline, 430, 690, null);
 	                if (tempoUPPianoSOutlineOn)
-	                    g.drawImage(tempoUPPianoSOutline, 882, 482, null);
+	                    g.drawImage(tempoUPPianoSOutline, 575, 619, null);
 	                if (tempoDownPianoSOutlineOn)
-	                    g.drawImage(tempoDownPianoSOutline, 882, 482, null);
+	                    g.drawImage(tempoDownPianoSOutline, 430, 615, null);
 	                if (switchPianoSOutlineOn)
-	                    g.drawImage(switchPianoSOutline, 882, 482, null);
+	                    g.drawImage(switchPianoSOutline, 882, 482, null); // Doesn't matter
 	                if (ku1PianoSOutlineOn)
-	                    g.drawImage(ku1PianoSOutline, 882, 482, null);
+	                    g.drawImage(ku1PianoSOutline, 125, 85, null);
 	                if (ku2PianoSOutlineOn)
-	                    g.drawImage(ku2PianoSOutline, 882, 482, null);
+	                    g.drawImage(ku2PianoSOutline, 232, 85, null);
 	                if (ku3PianoSOutlineOn)
-	                    g.drawImage(ku3PianoSOutline, 882, 482, null);
+	                    g.drawImage(ku3PianoSOutline, 450, 85, null);
 	                if (ku4PianoSOutlineOn)
-	                    g.drawImage(ku4PianoSOutline, 882, 482, null);
+	                    g.drawImage(ku4PianoSOutline, 557, 85, null);
 	                if (ku5PianoSOutlineOn)
-	                    g.drawImage(ku5PianoSOutline, 882, 482, null);
+	                    g.drawImage(ku5PianoSOutline, 664, 85, null);
 	                if (kl1PianoSOutlineOn)
-	                    g.drawImage(kl1PianoSOutline, 882, 482, null);
+	                    g.drawImage(kl1PianoSOutline, 73, 376, null);
 	                if (kl2PianoSOutlineOn)
-	                    g.drawImage(kl2PianoSOutline, 882, 482, null);
+	                    g.drawImage(kl2PianoSOutline, 179, 376, null);
 	                if (kl3PianoSOutlineOn)
-	                    g.drawImage(kl3PianoSOutline, 882, 482, null);
+	                    g.drawImage(kl3PianoSOutline, 291, 376, null);
 	                if (kl4PianoSOutlineOn)
-	                    g.drawImage(kl4PianoSOutline, 882, 482, null);
+	                    g.drawImage(kl4PianoSOutline, 398, 376, null);
 	                if (kl5PianoSOutlineOn)
-	                    g.drawImage(kl5PianoSOutline, 882, 482, null);
+	                    g.drawImage(kl5PianoSOutline, 505, 376, null);
 	                if (kl6PianoSOutlineOn)
-	                    g.drawImage(kl6PianoSOutline, 882, 482, null);
+	                    g.drawImage(kl6PianoSOutline, 613, 376, null);
 	                if (kl7PianoSOutlineOn)
-	                    g.drawImage(kl7PianoSOutline, 882, 482, null);
+	                    g.drawImage(kl7PianoSOutline, 718, 376, null);
 	                if (kl8PianoSOutlineOn)
-	                    g.drawImage(kl8PianoSOutline, 882, 482, null);
+	                    g.drawImage(kl8PianoSOutline, 829, 376, null);
 	                
                 }
                 else
@@ -248,33 +248,39 @@ public class Main extends JPanel
 	                if (recordDrumSOutlineOn)
 	                    g.drawImage(recordDrumSOutline, 882, 482, null);
 	                if (stopDrumSOutlineOn)
-	                    g.drawImage(stopDrumSOutline, 882, 600, null);
+	                    g.drawImage(stopDrumSOutline, 882, 627, null);
 	                if (replayDrumSOutlineOn)
-	                    g.drawImage(replayDrumSOutline, 882, 420, null);
+	                    g.drawImage(replayDrumSOutline, 882, 337, null);
 	                if (loopDrumSOutlineOn)
-	                    g.drawImage(loopDrumSOutline, 882, 400, null);
+	                    g.drawImage(loopDrumSOutline, 882, 144, null);
 	                if (tempoUpDrumSOutlineOn)
-	                    g.drawImage(tempoUpDrumSOutline, 882, 482, null);
+	                    g.drawImage(tempoUpDrumSOutline, 882, 200, null);
 	                if (tempoDownDrumSOutlineOn)
-	                    g.drawImage(tempoDownDrumSOutline, 882, 482, null);
+	                    g.drawImage(tempoDownDrumSOutline, 882, 265, null);
 	                if (switchDrumSOutlineOn)
-	                    g.drawImage(switchDrumSOutline, 882, 482, null);
+	                    g.drawImage(switchDrumSOutline, 882, 100, null); // not necessary
+	                if (hiHatDrumSOutlineOn)
+	                    g.drawImage(hiHatDrumSOutline, 53, 222, null);
+	                if (snareDrumSOutlineOn)
+	                    g.drawImage(snareDrumSOutline, 325, 498, null);
+	                if (bassDrumSOutlineOn)
+	                    g.drawImage(bassDrumSOutline, 480, 228, null);
 	                if (s1DrumSOutlineOn)
-	                    g.drawImage(s1DrumSOutline, 882, 482, null);
+	                    g.drawImage(s1DrumSOutline, 0, 0, null);
 	                if (s2DrumSOutlineOn)
-	                    g.drawImage(s2DrumSOutline, 882, 482, null);
-	                if (s2DrumSOutlineOn)
-	                    g.drawImage(s3DrumSOutline, 882, 482, null);
+	                    g.drawImage(s2DrumSOutline, 215, 0, null);
+	                if (s3DrumSOutlineOn)
+	                    g.drawImage(s3DrumSOutline, 430, 0, null);
 	                if (s4DrumSOutlineOn)
-	                    g.drawImage(s4DrumSOutline, 882, 482, null);
+	                    g.drawImage(s4DrumSOutline, 645, 0, null);
 	                if (s5DrumSOutlineOn)
-	                    g.drawImage(s5DrumSOutline, 882, 482, null);
+	                    g.drawImage(s5DrumSOutline, 0, 70, null);
 	                if (s6DrumSOutlineOn)
-	                    g.drawImage(s6DrumSOutline, 882, 482, null);
+	                    g.drawImage(s6DrumSOutline, 215, 70, null);
 	                if (s7DrumSOutlineOn)
-	                    g.drawImage(s7DrumSOutline, 882, 482, null);
+	                    g.drawImage(s7DrumSOutline, 430, 70, null);
 	                if (s8DrumSOutlineOn)
-	                    g.drawImage(s8DrumSOutline, 882, 482, null);
+	                    g.drawImage(s8DrumSOutline, 645, 70, null);
                 }
 
             }
@@ -387,6 +393,11 @@ public class Main extends JPanel
                 	    playSound(c);
                 	    break;
                 	case 'w':
+                		if (pianoScreen)
+                		{
+                			ku1PianoSOutlineOn = true;
+	                		pane.repaint();
+                		}
                 	    playSound(db);
                 	    break;
                 	case 's':
@@ -398,6 +409,11 @@ public class Main extends JPanel
                 	    playSound(d);
                 	    break;
                 	case 'e':
+                		if (pianoScreen)
+                		{
+                			ku2PianoSOutlineOn = true;
+	                		pane.repaint();
+                		}
                 	    playSound(eb);
                 	    break;
                 	case 'd':
@@ -417,6 +433,11 @@ public class Main extends JPanel
                 	    playSound(note_f);
                 	    break;
                 	case 't':
+                		if (pianoScreen)
+                		{
+                			ku3PianoSOutlineOn = true;
+	                		pane.repaint();
+                		}
                 	    playSound(gb);
                 	    break;
                 	case 'g':
@@ -428,6 +449,11 @@ public class Main extends JPanel
                 	    playSound(g);
                 	    break;
                 	case 'y':
+                		if (pianoScreen)
+                		{
+                			ku4PianoSOutlineOn = true;
+	                		pane.repaint();
+                		}
                 	    playSound(ab);
                 	    break;
                 	case 'h':
@@ -439,6 +465,11 @@ public class Main extends JPanel
                 	    playSound(a);
                 	    break;
                 	case 'u':
+                		if (pianoScreen)
+                		{
+                			ku5PianoSOutlineOn = true;
+	                		pane.repaint();
+                		}
                 	    playSound(bb);
                 	    break;
                 	case 'j':
@@ -585,12 +616,139 @@ public class Main extends JPanel
 			public void keyReleased(KeyEvent arg0) 
 			{
 				switch(arg0.getKeyChar())
-				{
-					case 'z':
-						recordDrumSOutlineOn = false;
+		        {
+		            case '2':
+		                recordDrumSOutlineOn = false;
+		                recordPianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case '1':
+		                stopDrumSOutlineOn = false;
+		                stopPianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case '3':
+		                replayDrumSOutlineOn = false;
+		                replayPianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case '6':
+		                loopDrumSOutlineOn = false;
+		                loopPianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case '5':
+		                tempoUpDrumSOutlineOn = false;
+		                tempoUPPianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case '4':
+		                tempoDownDrumSOutlineOn = false;
+		                tempoDownPianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case '7':
+		                switchDrumSOutlineOn = false;
+		                switchPianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'i':
+                		hiHatDrumSOutlineOn = false;
                 		pane.repaint();
-						break;
-				}
+	                	break;
+                	case 'o':
+                		snareDrumSOutlineOn = false;
+                		pane.repaint();
+	                	break;
+                	case 'p':
+                		bassDrumSOutlineOn = false;
+                		pane.repaint();
+	                	break;
+		            case 'z':
+		                s1DrumSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'x':
+		                s2DrumSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'c':
+		                s3DrumSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'v':
+		                s4DrumSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'b':
+		                s5DrumSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'n':
+		                s6DrumSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'm':
+		                s7DrumSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case ',':
+		                s8DrumSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'w':
+		                ku1PianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'e':
+		                ku2PianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 't':
+		                ku3PianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'y':
+		                ku4PianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'u':
+		                ku5PianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'a':
+		                kl1PianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 's':
+		                kl2PianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'd':
+		                kl3PianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'f':
+		                kl4PianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'g':
+		                kl5PianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'h':
+		                kl6PianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'j':
+		                kl7PianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		            case 'k':
+		                kl8PianoSOutlineOn = false;
+		                pane.repaint();
+		                break;
+		        }
 			}
 
 			@Override
