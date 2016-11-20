@@ -226,32 +226,23 @@ public class Main extends JPanel
                         break;
                 	case 'b':
                 		if (playbackIndex < 0 || playbackIndex >= timeOld.size())
-                		{
-	                		System.out.println("Decrease tempo by 2");
-							int i = 0;
-							while(i < timeOld.size())
-							{
-								timeOld.set(i, timeOld.get(i)*2);
-						        i++;
-							}
-                		}
-                		else
-                			System.out.println("Can't change tempo during playback");
+                		System.out.println("Decrease tempo by 2");
+						int i = 0;
+						while(i < timeOld.size())
+						{
+							timeOld.set(i, timeOld.get(i)*2);
+					        i++;
+						} 
                 		break;
                 	case 'n':
-                		if (playbackIndex < 0 || playbackIndex >= timeOld.size())
-                		{
-	                		System.out.println("Increase tempo by 2");
-	                		int i = 0;
-	                        while(i < timeOld.size())
-	                        {
-	                    		timeOld.set(i, timeOld.get(i)/2);
-	                            i++;
-	                        } 
-	                        break;
-                		}
-                		else
-                			System.out.println("Can't change tempo during playback");
+                		System.out.println("Increase tempo by 2");
+                		i = 0;
+                        while(i < timeOld.size())
+                        {
+                    		timeOld.set(i, timeOld.get(i)/2);
+                            i++;
+                        } 
+                        break;
                 }
             }
 

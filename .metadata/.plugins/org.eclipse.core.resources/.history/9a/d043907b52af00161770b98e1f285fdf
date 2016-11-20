@@ -42,7 +42,7 @@ public class Main extends JPanel
     double startTimeOld = 0;
 	ArrayList<File> play = new ArrayList<File>();
 	ArrayList<Double> time = new ArrayList<Double>();
-    double startTime = -1;
+    double startTime = 0;
     int playbackIndex = -1;
     double replayStart;
     
@@ -155,21 +155,16 @@ public class Main extends JPanel
 	                	break;
 	                // Start Recording
                 	case 'z':
-                		if (startTime < 0)
-                		{
-	                		System.out.println("Start recording");
-	                		play.clear();
-	                		time.clear();
-	                        startTime = System.currentTimeMillis();
-                		}
-                		else
-                			System.out.println("Currently recording");
+                		System.out.println("Start Recording");
+                		play.clear();
+                		time.clear();
+                        startTime = System.currentTimeMillis(); 
                 		break;
                 	// Stop Recording
                 	case 'x':
                 		if (startTime >= 0)
                 		{
-	                		System.out.println("Stop recording");
+	                		System.out.println("Stop Recording");
 	                		playbackIndex = -1;
 	                        startTime = -1;
 	                        startTimeOld = startTime;
@@ -225,33 +220,21 @@ public class Main extends JPanel
 						}
                         break;
                 	case 'b':
-                		if (playbackIndex < 0 || playbackIndex >= timeOld.size())
-                		{
-	                		System.out.println("Decrease tempo by 2");
-							int i = 0;
-							while(i < timeOld.size())
-							{
+						int i = 0;
+						while(i < timeOld.size())
+						{
 								timeOld.set(i, timeOld.get(i)*2);
 						        i++;
-							}
-                		}
-                		else
-                			System.out.println("Can't change tempo during playback");
+						} 
                 		break;
                 	case 'n':
-                		if (playbackIndex < 0 || playbackIndex >= timeOld.size())
-                		{
-	                		System.out.println("Increase tempo by 2");
-	                		int i = 0;
-	                        while(i < timeOld.size())
-	                        {
-	                    		timeOld.set(i, timeOld.get(i)/2);
-	                            i++;
-	                        } 
-	                        break;
-                		}
-                		else
-                			System.out.println("Can't change tempo during playback");
+                		i = 0;
+                        while(i < timeOld.size())
+                        {
+                        		timeOld.set(i, timeOld.get(i)/2);
+                                i++;
+                        } 
+                        break;
                 }
             }
 
