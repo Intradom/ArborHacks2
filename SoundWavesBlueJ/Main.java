@@ -596,6 +596,7 @@ public class Main extends JPanel
                 		}
                 		else
                 			System.out.println("Can't change tempo during playback");
+                		break;
                 	case '7':
                 		if (pianoScreen)
                 			switchPianoSOutlineOn = true;
