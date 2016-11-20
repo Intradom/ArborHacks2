@@ -2,63 +2,55 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
-import javax.sound.sampled.LineEvent.Type;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-class ImagePanel extends JComponent {
-    /**
+public class Main extends JPanel
+{
+	
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Image image;
-    public ImagePanel(Image image) {
-        this.image = image;
-    }
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(image, 0, 0, this);
-    }
-}
 
-public class Main {
-	
 	// Background Image
-	final static File bg = new File("../new_screen_for_SoundWaves.png");
+	final File bg = new File("../new_screen_for_SoundWaves.png");
 	
 	// Sound Files
-	final static File hiHatNoise = new File("../SoundFiles/Drum/Hi-Hat.wav");
-	final static File snareNoise = new File("../SoundFiles/Drum/Snare_Drum.wav");
-	final static File bassNoise = new File("../SoundFiles/Drum/Bass_Drum.wav");
-	final static File golfNoise = new File("../SoundFiles/golf_swing.wav"); 
-	final static File baboon1 = new File("../SoundFiles/wav/baboon1.wav");
-	final static File ballhitcheer = new File("../SoundFiles/wav/Ball+Hit+Cheer.wav");
-	final static File bark = new File("../SoundFiles/wav/bark.wav");
-	final static File bearroar = new File("../SoundFiles/wav/bear-roar.wav");
-	final static File bowling2 = new File("../SoundFiles/wav/bowling2.wav");
-	final static File camel2 = new File("../SoundFiles/wav/camel2.wav");
-	final static File Cheetah2 = new File("../SoundFiles/wav/Cheetah2.wav");
-	final static File dSHAKE = new File("../SoundFiles/wav/dSHAKE.wav");
-	final static File golfball= new File("../SoundFiles/wav/golfball.wav");
-	final static File koala = new File("../SoundFiles/wav/koala%5B1%5D.wav");
+	final File hiHatNoise = new File("../SoundFiles/Drum/Hi-Hat.wav");
+	final File snareNoise = new File("../SoundFiles/Drum/Snare_Drum.wav");
+	final File bassNoise = new File("../SoundFiles/Drum/Bass_Drum.wav");
+	final File golfNoise = new File("../SoundFiles/golf_swing.wav"); 
+	final File baboon1 = new File("../SoundFiles/wav/baboon1.wav");
+	final File ballhitcheer = new File("../SoundFiles/wav/Ball+Hit+Cheer.wav");
+	final File bark = new File("../SoundFiles/wav/bark.wav");
+	final File bearroar = new File("../SoundFiles/wav/bear-roar.wav");
+	final File bowling2 = new File("../SoundFiles/wav/bowling2.wav");
+	final File camel2 = new File("../SoundFiles/wav/camel2.wav");
+	final File Cheetah2 = new File("../SoundFiles/wav/Cheetah2.wav");
+	final File dSHAKE = new File("../SoundFiles/wav/dSHAKE.wav");
+	final File golfball= new File("../SoundFiles/wav/golfball.wav");
+	final File koala = new File("../SoundFiles/wav/koala%5B1%5D.wav");
 	
-	static ArrayList<File> play = new ArrayList<File>();
-	static ArrayList<Double> time = new ArrayList<Double>();
-    static double startTime = 0;
-	
-	public static void playSound(File f)
+	ArrayList<File> playOld = new ArrayList<File>();
+	ArrayList<Double> timeOld = new ArrayList<Double>();
+    double startTimeOld = 0;
+	ArrayList<File> play = new ArrayList<File>();
+	ArrayList<Double> time = new ArrayList<Double>();
+    double startTime = 0;
+    int playbackIndex = -1;
+    
+	public void playSound(File f)
 	{	
 		if (startTime > 0)
 		{
 			time.add(System.currentTimeMillis() - startTime);
-            play.add(f);
+	        play.add(f);
 		}
 		
 		try {
@@ -76,7 +68,7 @@ public class Main {
 		    
 		    LineListener listener = new LineListener() {
 		        public void update(LineEvent event) {
-	                if (event.getType() == Type.STOP) {
+	                if (event.getType() == LineEvent.Type.STOP) {
 	                    clip.close();
 	                    event.getLine().close();
 	                }
@@ -90,16 +82,27 @@ public class Main {
         }
 	}
 	
-	public static void main(String[] args) throws Exception 
+	public Main() throws IOException
 	{
-        JFrame f = new JFrame("SoundWaves");
+		JFrame f = new JFrame("SoundWaves");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        BufferedImage myImage = ImageIO.read(bg);
-        f.setContentPane(new ImagePanel(myImage));
+        Image backgroundImage = ImageIO.read(bg);
         f.setVisible(true);
         f.setSize(1024, 800);
-        
-        //loadAllClips();
+                
+        JPanel pane = new JPanel() {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(backgroundImage, 0, 0, null);
+            }
+        };
+        f.add(pane);
         
         f.addKeyListener(new KeyListener() {
           
@@ -154,30 +157,23 @@ public class Main {
                 		System.out.println("Start Recording");
                 		play.clear();
                 		time.clear();
-                        startTime = System.currentTimeMillis();    
+                        startTime = System.currentTimeMillis(); 
                 		break;
                 	// Stop Recording
                 	case 'x':
                 		System.out.println("Stop Recording");
                         startTime = -1;
+                        startTimeOld = startTime;
+                        playOld = play; // Might not be deep copy
+                        timeOld = time;
                 		break;
                 	// Playback Recording
                 	case 'c':
                 		System.out.println("Playback");
-                		if (startTime <= 0)
-                		{
-	                		double replayStart = System.currentTimeMillis();
-	
-	                        int i = 0;
-	                        while(i < play.size())
-	                        {
-                                if (time.get(i) - startTime < System.currentTimeMillis() - replayStart)
-                                {
-                                    playSound(play.get(i));
-                                    i++;
-                                }
-	                        }
-                		}
+                		if (startTime <= 0 && playbackIndex <= 0)
+	                		playbackIndex = 0;
+                		else
+                			System.out.println("Can't playback recording");
                 		break;
                 	// TODO: Toggle loop
                 	case 'v':
@@ -223,5 +219,34 @@ public class Main {
 				
 			}
         });
+
+        while (true)
+        {
+        	// If playback enabled, play the sounds in it
+            if (playbackIndex >= 0 && playbackIndex < timeOld.size())
+            {
+            	System.out.println(playbackIndex);
+                double replayStart = System.currentTimeMillis();
+
+    	        if (timeOld.get(playbackIndex) - startTimeOld < System.currentTimeMillis() - replayStart)
+    	        {
+    	            playSound(playOld.get(playbackIndex));
+    	            playbackIndex++;
+    	        }
+            }
+            
+            try {
+				Thread.sleep(10);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+        }
+        
+	}
+	
+	public static void main(String[] args) throws Exception 
+	{
+		new Main();
 	}
 }
