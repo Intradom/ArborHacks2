@@ -12,7 +12,11 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 class ImagePanel extends JComponent {
-    private Image image;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Image image;
     public ImagePanel(Image image) {
         this.image = image;
     }
@@ -29,7 +33,9 @@ public class Main {
 	final static File bg = new File("../Screen_for_SoundWaves.png");
 	
 	// Sound Files
-	final static File drumNoise = new File("../SoundFiles/Drum/Snare_Drum.wav");
+	final static File hiHatNoise = new File("../SoundFiles/Drum/Hi-Hat.wav");
+	final static File snareNoise = new File("../SoundFiles/Drum/Snare_Drum.wav");
+	final static File bassNoise = new File("../SoundFiles/Drum/Bass_Drum.wav");
 	final static File golfNoise = new File("../SoundFiles/golf_swing.wav"); 
 	final static File baboon1 = new File("../SoundFiles/wav/baboon1.wav");
 	final static File ballhitcheer = new File("../SoundFiles/wav/Ball+Hit+Cheer.wav");
@@ -42,9 +48,24 @@ public class Main {
 	final static File golfball= new File("../SoundFiles/wav/golfball.wav");
 	final static File koala = new File("../SoundFiles/wav/koala%5B1%5D.wav");
 	
+	// Clips for the sound files
+	static Clip hiHatNoiseClip;
+	static Clip snareNoiseClip;
+	static Clip bassNoiseClip;
+	static Clip golfNoiseClip;
+	static Clip baboon1Clip;
+	static Clip ballhitcheerClip;
+	static Clip barkClip;
+	static Clip bearroarClip;
+	static Clip bowling2Clip;
+	static Clip camel2Clip;
+	static Clip Cheetah2Clip;
+	static Clip dSHAKEClip;
+	static Clip golfballClip;
+	static Clip koalaClip;
 	
-	public static void playSound(File f)
-	{	
+	public static Clip loadSound(File f)
+	{
 		try {
 		    AudioInputStream stream;
 		    AudioFormat format;
@@ -56,32 +77,62 @@ public class Main {
 		    info = new DataLine.Info(Clip.class, format);
 		    clip = (Clip) AudioSystem.getLine(info);
 		    clip.open(stream);
-		    clip.start();
 		    
-		    LineListener listener = new LineListener() {
-		        public void update(LineEvent event) {
-	                if (event.getType() == Type.STOP) {
-	                    clip.close();
-	                    event.getLine().close();
-	                }
-		        }
-		    };
-		clip.addLineListener(listener );
+		    //LineListener listener = new LineListener() {
+		    //    public void update(LineEvent event) {
+	        //        if (event.getType() == Type.STOP) {
+	        //            clip.stop();
+	        //        }
+		    //    }
+		    //};
+		    //clip.addLineListener(listener);
+		    
+		    return clip;
 		}
 		catch (Exception e) {
 		  e.printStackTrace();
 		  System.exit(1);		
         }
+		
+		// Try failed
+		return null;
+	}
+	
+	public static void loadAllClips()
+	{
+		hiHatNoiseClip = loadSound(hiHatNoise);
+		snareNoiseClip = loadSound(snareNoise);
+		bassNoiseClip = loadSound(bassNoise);
+		golfNoiseClip = loadSound(golfNoise);
+		baboon1Clip = loadSound(baboon1);
+		ballhitcheerClip = loadSound(ballhitcheer);
+		barkClip = loadSound(bark);
+		bearroarClip = loadSound(bearroar);
+		bowling2Clip = loadSound(bowling2);
+		camel2Clip = loadSound(camel2);
+		Cheetah2Clip = loadSound(Cheetah2);
+		dSHAKEClip = loadSound(dSHAKE);
+		golfballClip = loadSound(golfball);
+		koalaClip = loadSound(koala);
+
+	}
+	
+	public static void playSound(Clip clip)
+	{	
+		clip.setFramePosition(0);
+		clip.start();
 	}
 	
 	public static void main(String[] args) throws Exception 
 	{
         JFrame f = new JFrame("SoundWaves");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setVisible(true);
-        f.setSize(1024, 768);
         BufferedImage myImage = ImageIO.read(bg);
         f.setContentPane(new ImagePanel(myImage));
+        f.setVisible(true);
+        f.setSize(1024, 800);
+        
+        loadAllClips();
         
         f.addKeyListener(new KeyListener() {
           
@@ -89,42 +140,48 @@ public class Main {
             public void keyPressed(KeyEvent e) {
                 switch(e.getKeyChar())
                 {
-                case 'f':
-                	playSound(koala);
-                	break;
-                	case 'h':
-                	playSound(golfball);
-                	break;
-                	case 'y':
-                	playSound(dSHAKE);
-                	break;
-                	case 'q':
-                	playSound(Cheetah2);
-                	break;
-                	case 'w':
-                	playSound(bearroar);
-                	break;
-                	case 'e':
-                	playSound(camel2);
-                	break;
-                	case 'r':
-                	playSound(bowling2);
-                	break;
-                	case 't':
-                	playSound(bark);
-                	break;
-                	case 'a':
-                	playSound(ballhitcheer);
-                	break;
-                	case 's':
-                	playSound(baboon1);
-                	break;
                 	case 'd':
-                	playSound(drumNoise);
-                	break;
+	                	playSound(koalaClip);
+	                	break;
+                	case 'h':
+	                	playSound(golfballClip);
+	                	break;
+                	case 'y':
+	                	playSound(dSHAKEClip);
+	                	break;
+                	case 'q':
+	                	playSound(Cheetah2Clip);
+	                	break;
+                	case 'w':
+	                	playSound(bearroarClip);
+	                	break;
+                	case 'e':
+	                	playSound(camel2Clip);
+	                	break;
+                	case 'r':
+	                	playSound(bowling2Clip);
+	                	break;
+                	case 't':
+	                	playSound(barkClip);
+	                	break;
+                	case 'a':
+	                	playSound(ballhitcheerClip);
+	                	break;
+                	case 's':
+	                	playSound(baboon1Clip);
+	                	break;
                 	case 'g':
-                	playSound(golfNoise);
-                	break;
+	                	playSound(golfNoiseClip);
+	                	break;
+                	case 'j':
+	                	playSound(hiHatNoiseClip);
+	                	break;
+                	case 'k':
+	                	playSound(snareNoiseClip);
+	                	break;
+                	case 'l':
+	                	playSound(bassNoiseClip);
+	                	break;
                 }
             }
 
