@@ -14,7 +14,6 @@ public class Playback
         ArrayList<Character> play = new ArrayList<Character>();
         ArrayList<Double> time = new ArrayList<Double>();
         double startTime = 0;
-        double elapsedTime = 0;
         Scanner keyboard = new Scanner(System.in);
         
     
@@ -74,19 +73,45 @@ public class Playback
                     System.out.println(maxTimeUp);
                     int j = 0;
                     while (j < maxTimeUp)
-                    {
+                        {
+                            double replayStart = System.currentTimeMillis();
+                            int i = 0;
+                            while(i < play.size())
+                            {
+                                if (time.get(i) - startTime < System.currentTimeMillis() - replayStart)
+                                    {
+                                        System.out.println(play.get(i));
+                                        i++;
+                                    }
+                                }
+                                j++;
+                            }
+                }
+                else if (userInput.equals("up"))
+                {
                     double replayStart = System.currentTimeMillis();
                     int i = 0;
                     while(i < play.size())
                     {
-                           if (time.get(i) - startTime < System.currentTimeMillis() - replayStart)
+                            if (time.get(i) - startTime < (System.currentTimeMillis() - replayStart)*2)
                             {
-                               System.out.println(play.get(i));
-                               i++;
+                                System.out.println(play.get(i));
+                                i++;
                             }
-                   }
-                    j++;
+                    } 
                 }
+                else if (userInput.equals("down"))
+                {
+                    double replayStart = System.currentTimeMillis();
+                    int i = 0;
+                    while(i < play.size())
+                    {
+                            if (time.get(i) - startTime < (System.currentTimeMillis() - replayStart)/2)
+                            {
+                                System.out.println(play.get(i));
+                                i++;
+                            }
+                    } 
                 }
                 }
             }
