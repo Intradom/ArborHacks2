@@ -164,6 +164,7 @@ public class Main extends JPanel
                 	case 'x':
                 		if (startTime >= 0)
                 		{
+                			System.out.println(time.size());
 	                		System.out.println("Stop Recording");
 	                		playbackIndex = -1;
 	                        startTime = -1;
@@ -242,6 +243,8 @@ public class Main extends JPanel
             {
     	        if (timeOld.get(playbackIndex) - startTimeOld < System.currentTimeMillis() - replayStart)
     	        {
+                	System.out.println(playbackIndex);
+                	System.out.println(timeOld.size());
     	            playSound(playOld.get(playbackIndex));
     	            playbackIndex++;
     	        }

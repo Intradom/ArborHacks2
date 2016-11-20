@@ -165,11 +165,8 @@ public class Main extends JPanel
                 		if (startTime >= 0)
                 		{
 	                		System.out.println("Stop Recording");
-	                		playbackIndex = -1;
 	                        startTime = -1;
 	                        startTimeOld = startTime;
-	                        playOld.clear();
-	                        timeOld.clear();
 	                        for (int i = 0; i < time.size(); i++)
 	                        {
 	                        	playOld.add(play.get(i));
@@ -240,6 +237,8 @@ public class Main extends JPanel
         	// If playback enabled, play the sounds in it
             if (playbackIndex >= 0 && playbackIndex < timeOld.size())
             {
+            	System.out.println(playbackIndex);
+
     	        if (timeOld.get(playbackIndex) - startTimeOld < System.currentTimeMillis() - replayStart)
     	        {
     	            playSound(playOld.get(playbackIndex));
