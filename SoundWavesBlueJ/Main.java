@@ -79,15 +79,15 @@ public class Main extends JPanel
     final File record = new File("../SoundFiles/piano/268160_thirteenthfail_enemy-red.wav");
 	final File hiHatNoise = new File("../SoundFiles/Drum/Hi-Hat.wav");
 	final File snareNoise = new File("../SoundFiles/Drum/Snare_Drum.wav");
-	final File bassNoise = new File("../SoundFiles/32594__franticaerostat__bassbottle.wav");
-	final File specialSound1 = new File("../SoundFiles/golf_swing.wav"); 
-	final File specialSound2 = new File("../SoundFiles/wav/baboon1.wav");
-	final File specialSound3 = new File("../SoundFiles/wav/Ball+Hit+Cheer.wav");
-	final File specialSound4 = new File("../SoundFiles/wav/bark.wav");
-	final File specialSound5 = new File("../SoundFiles/wav/bear-roar.wav");
-	final File specialSound6 = new File("../SoundFiles/wav/bowling2.wav");
-	final File specialSound7 = new File("../SoundFiles/wav/camel2.wav");
-	final File specialSound8 = new File("../SoundFiles/wav/Cheetah2.wav");
+	final File bassNoise = new File("../SoundFiles/Drum/32594__franticaerostat__bassbottle.wav");
+	final File specialSound1 = new File("../SoundFiles/special/Fake Applause-SoundBible.com-1541144825.wav"); 
+	final File specialSound2 = new File("../SoundFiles/special/Balloon Popping-SoundBible.com-1247261379.wav");
+	final File specialSound3 = new File("../SoundFiles/special/bark.wav");
+	final File specialSound4 = new File("../SoundFiles/special/pin_dropping-Brian_Rocca-2084700791.wav");
+	final File specialSound5 = new File("../SoundFiles/special/fire_bow_sound-mike-koenig.wav");
+	final File specialSound6 = new File("../SoundFiles/special/glass_ping-Go445-1207030150.wav");
+	final File specialSound7 = new File("../SoundFiles/special/golf_swing.wav");
+	final File specialSound8 = new File("../SoundFiles/special/sms-alert-1-daniel_simon.wav");
 
 	ArrayList<File> playOld = new ArrayList<File>();
 	ArrayList<Double> timeOld = new ArrayList<Double>();
@@ -199,17 +199,17 @@ public class Main extends JPanel
                 	
 	                // Outline Toggles
                 	if (recordPianoSOutlineOn)
-	                    g.drawImage(recordPianoSOutline, 142, 625, null);
+	                    g.drawImage(recordPianoSOutline, 143, 624, null);
 	                if (stopPianoSOutlineOn)
-	                    g.drawImage(stopPianoSOutline, 0, 625, null);
+	                    g.drawImage(stopPianoSOutline, 0, 624, null);
 	                if (replayPianoSOutlineOn)
-	                    g.drawImage(replayPianoSOutline, 288, 625, null);
+	                    g.drawImage(replayPianoSOutline, 285, 624, null);
 	                if (loopPianoSOutlineOn)
-	                    g.drawImage(loopPianoSOutline, 430, 690, null);
+	                    g.drawImage(loopPianoSOutline, 432, 692, null);
 	                if (tempoUPPianoSOutlineOn)
-	                    g.drawImage(tempoUPPianoSOutline, 575, 619, null);
+	                    g.drawImage(tempoUPPianoSOutline, 577, 625, null);
 	                if (tempoDownPianoSOutlineOn)
-	                    g.drawImage(tempoDownPianoSOutline, 430, 615, null);
+	                    g.drawImage(tempoDownPianoSOutline, 432, 625, null);
 	                if (switchPianoSOutlineOn)
 	                    g.drawImage(switchPianoSOutline, 882, 482, null); // Doesn't matter
 	                if (ku1PianoSOutlineOn)
