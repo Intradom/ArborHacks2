@@ -46,7 +46,6 @@ public class Playback
                 if (userInput.equals("replay"))
                 {
                     double replayStart = System.currentTimeMillis();
-
                     int i = 0;
                     while(i < play.size())
                     {
@@ -73,7 +72,7 @@ public class Playback
                     double maxTimeUp = Math.round(maxTime/1000) + 1;
                     System.out.println(maxTimeUp);
                     int j = 0;
-                    while (j < maxTimeUp)
+                    while (true)
                         {
                             double replayStart = System.currentTimeMillis();
                             int i = 0;
@@ -88,31 +87,27 @@ public class Playback
                                 j++;
                             }
                 }
-                else if (userInput.equals("up"))
+                if (userInput.equals("up"))
                 {
-                    double replayStart = System.currentTimeMillis();
-                    int i = 0;
-                    while(i < play.size())
-                    {
-                            if (time.get(i) - startTime < (System.currentTimeMillis() - replayStart)*2)
-                            {
-                                System.out.println(play.get(i));
-                                i++;
-                            }
-                    } 
+                   int i = 0;
+                   while(i < time.size())
+                   {
+                           System.out.print(time.get(i) + " ");
+                           time.set(i, time.get(i)/2);
+                           System.out.println(time.get(i));
+                           i++;
+                   } 
                 }
                 else if (userInput.equals("down"))
                 {
-                    double replayStart = System.currentTimeMillis();
                     int i = 0;
-                    while(i < play.size())
-                    {
-                            if (time.get(i) - startTime < (System.currentTimeMillis() - replayStart)/2)
-                            {
-                                System.out.println(play.get(i));
-                                i++;
-                            }
-                    } 
+                   while(i < time.size())
+                   {
+                           System.out.print(time.get(i) + " ");
+                           time.set(i, time.get(i)*2);
+                           System.out.println(time.get(i));
+                           i++;
+                   } 
                 }
                 }
             }
