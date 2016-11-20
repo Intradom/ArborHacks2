@@ -79,7 +79,7 @@ public class Main extends JPanel
     final File record = new File("../SoundFiles/piano/268160_thirteenthfail_enemy-red.wav");
 	final File hiHatNoise = new File("../SoundFiles/Drum/Hi-Hat.wav");
 	final File snareNoise = new File("../SoundFiles/Drum/Snare_Drum.wav");
-	final File bassNoise = new File("../SoundFiles/32594__franticaerostat__bassbottle.wav");
+	final File bassNoise = new File("../SoundFiles/Drum/Bass_Drum.wav");
 	final File specialSound1 = new File("../SoundFiles/golf_swing.wav"); 
 	final File specialSound2 = new File("../SoundFiles/wav/baboon1.wav");
 	final File specialSound3 = new File("../SoundFiles/wav/Ball+Hit+Cheer.wav");
