@@ -19,8 +19,9 @@ public class Main extends JPanel
 	private static final long serialVersionUID = 1L;
 
 	// Background Image
-	final File bg = new File("../new_screen_for_SoundWaves.png");
-	
+    final Image backgroundImage = ImageIO.read(new File("../new_screen_for_SoundWaves.png"));
+    final Image recordDrumSOutline = ImageIO.read(new File("../stop_record_replay_outline.png"));
+    
 	// Sound Files
 	final File hiHatNoise = new File("../SoundFiles/Drum/Hi-Hat.wav");
 	final File snareNoise = new File("../SoundFiles/Drum/Snare_Drum.wav");
@@ -47,6 +48,43 @@ public class Main extends JPanel
     boolean loop = false;
     double replayStart;
     
+    // Visual toggles
+    boolean recordDrumSOutlineOn = false;
+    boolean stopDrumSOutlineOn = false;
+    boolean replayDrumSOutlineOn = false;
+    boolean loopDrumSOutlineOn = false;
+    boolean tempoUpDrumSOutlineOn = false;
+    boolean tempoDownDrumSOutlineOn = false;
+    boolean switchDrumSOutlineOn = false;
+    boolean s1DrumSOutlineOn = false;
+    boolean s2DrumSOutlineOn = false;
+    boolean s3DrumSOutlineOn = false;
+    boolean s4DrumSOutlineOn = false;
+    boolean s5DrumSOutlineOn = false;
+    boolean s6DrumSOutlineOn = false;
+    boolean s7DrumSOutlineOn = false;
+    boolean s8DrumSOutlineOn = false;
+    boolean recordPianoSOutlineOn = false;
+    boolean stopPianoSOutlineOn = false;
+    boolean replayPianoSOutlineOn = false;
+    boolean loopPianoSOutlineOn = false;
+    boolean tempoUPPianoSOutlineOn = false;
+    boolean tempoDownPianoSOutlineOn = false;
+    boolean switchPianoSOutlineOn = false;
+    boolean ku1PianoSOutlineOn = false;
+    boolean ku2PianoSOutlineOn = false;
+    boolean ku3PianoSOutlineOn = false;
+    boolean ku4PianoSOutlineOn = false;
+    boolean ku5PianoSOutlineOn = false;
+    boolean kl1PianoSOutlineOn = false;
+    boolean kl2PianoSOutlineOn = false;
+    boolean kl3PianoSOutlineOn = false;
+    boolean kl4PianoSOutlineOn = false;
+    boolean kl5PianoSOutlineOn = false;
+    boolean kl6PianoSOutlineOn = false;
+    boolean kl7PianoSOutlineOn = false;
+    boolean kl8PianoSOutlineOn = false;
+
 	public void playSound(File f)
 	{	
 		if (startTime > 0)
@@ -88,9 +126,8 @@ public class Main extends JPanel
 	{
 		JFrame f = new JFrame("SoundWaves");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Image backgroundImage = ImageIO.read(bg);
         f.setVisible(true);
-        f.setSize(1024, 800);
+        f.setSize(1024, 808);
                 
         JPanel pane = new JPanel() {
             /**
@@ -102,6 +139,11 @@ public class Main extends JPanel
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(backgroundImage, 0, 0, null);
+                
+                // Outline Toggles
+                if (recordDrumSOutlineOn)
+                    g.drawImage(recordDrumSOutline, 882, 482, null);
+
             }
         };
         f.add(pane);
@@ -159,6 +201,8 @@ public class Main extends JPanel
                 		if (startTime < 0)
                 		{
 	                		System.out.println("Start recording");
+	                		recordDrumSOutlineOn = true;
+	                		pane.repaint();
 	                		play.clear();
 	                		time.clear();
 	                        startTime = System.currentTimeMillis();
@@ -235,9 +279,15 @@ public class Main extends JPanel
             }
 
 			@Override
-			public void keyReleased(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-				
+			public void keyReleased(KeyEvent arg0) 
+			{
+				switch(arg0.getKeyChar())
+				{
+					case 'z':
+						recordDrumSOutlineOn = false;
+                		pane.repaint();
+						break;
+				}
 			}
 
 			@Override
