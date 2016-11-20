@@ -199,9 +199,9 @@ public class Main extends JPanel
                 	
 	                // Outline Toggles
                 	if (recordPianoSOutlineOn)
-	                    g.drawImage(recordPianoSOutline, 143, 624, null);
+	                    g.drawImage(recordPianoSOutline, 143, 623, null);
 	                if (stopPianoSOutlineOn)
-	                    g.drawImage(stopPianoSOutline, 0, 624, null);
+	                    g.drawImage(stopPianoSOutline, 0, 625, null);
 	                if (replayPianoSOutlineOn)
 	                    g.drawImage(replayPianoSOutline, 285, 624, null);
 	                if (loopPianoSOutlineOn)
