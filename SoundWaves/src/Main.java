@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
@@ -30,7 +31,7 @@ class ImagePanel extends JComponent {
 public class Main {
 	
 	// Background Image
-	final static File bg = new File("../Screen_for_SoundWaves.png");
+	final static File bg = new File("../new_screen_for_SoundWaves.png");
 	
 	// Sound Files
 	final static File hiHatNoise = new File("../SoundFiles/Drum/Hi-Hat.wav");
@@ -48,24 +49,18 @@ public class Main {
 	final static File golfball= new File("../SoundFiles/wav/golfball.wav");
 	final static File koala = new File("../SoundFiles/wav/koala%5B1%5D.wav");
 	
-	// Clips for the sound files
-	static Clip hiHatNoiseClip;
-	static Clip snareNoiseClip;
-	static Clip bassNoiseClip;
-	static Clip golfNoiseClip;
-	static Clip baboon1Clip;
-	static Clip ballhitcheerClip;
-	static Clip barkClip;
-	static Clip bearroarClip;
-	static Clip bowling2Clip;
-	static Clip camel2Clip;
-	static Clip Cheetah2Clip;
-	static Clip dSHAKEClip;
-	static Clip golfballClip;
-	static Clip koalaClip;
+	static ArrayList<File> play = new ArrayList<File>();
+	static ArrayList<Double> time = new ArrayList<Double>();
+    static double startTime = 0;
 	
-	public static Clip loadSound(File f)
-	{
+	public static void playSound(File f)
+	{	
+		if (startTime > 0)
+		{
+			time.add(System.currentTimeMillis() - startTime);
+            play.add(f);
+		}
+		
 		try {
 		    AudioInputStream stream;
 		    AudioFormat format;
@@ -77,50 +72,22 @@ public class Main {
 		    info = new DataLine.Info(Clip.class, format);
 		    clip = (Clip) AudioSystem.getLine(info);
 		    clip.open(stream);
+		    clip.start();
 		    
-		    //LineListener listener = new LineListener() {
-		    //    public void update(LineEvent event) {
-	        //        if (event.getType() == Type.STOP) {
-	        //            clip.stop();
-	        //        }
-		    //    }
-		    //};
-		    //clip.addLineListener(listener);
-		    
-		    return clip;
+		    LineListener listener = new LineListener() {
+		        public void update(LineEvent event) {
+	                if (event.getType() == Type.STOP) {
+	                    clip.close();
+	                    event.getLine().close();
+	                }
+		        }
+		    };
+		clip.addLineListener(listener );
 		}
 		catch (Exception e) {
 		  e.printStackTrace();
 		  System.exit(1);		
         }
-		
-		// Try failed
-		return null;
-	}
-	
-	public static void loadAllClips()
-	{
-		hiHatNoiseClip = loadSound(hiHatNoise);
-		snareNoiseClip = loadSound(snareNoise);
-		bassNoiseClip = loadSound(bassNoise);
-		golfNoiseClip = loadSound(golfNoise);
-		baboon1Clip = loadSound(baboon1);
-		ballhitcheerClip = loadSound(ballhitcheer);
-		barkClip = loadSound(bark);
-		bearroarClip = loadSound(bearroar);
-		bowling2Clip = loadSound(bowling2);
-		camel2Clip = loadSound(camel2);
-		Cheetah2Clip = loadSound(Cheetah2);
-		dSHAKEClip = loadSound(dSHAKE);
-		golfballClip = loadSound(golfball);
-		koalaClip = loadSound(koala);
-
-	}
-	
-	public static void playSound(Clip clip)
-	{	
-		clip.setFramePosition(0);
-		clip.start();
 	}
 	
 	public static void main(String[] args) throws Exception 
@@ -132,7 +99,7 @@ public class Main {
         f.setVisible(true);
         f.setSize(1024, 800);
         
-        loadAllClips();
+        //loadAllClips();
         
         f.addKeyListener(new KeyListener() {
           
@@ -141,47 +108,106 @@ public class Main {
                 switch(e.getKeyChar())
                 {
                 	case 'd':
-	                	playSound(koalaClip);
+	                	playSound(koala);
 	                	break;
                 	case 'h':
-	                	playSound(golfballClip);
+	                	playSound(golfball);
 	                	break;
                 	case 'y':
-	                	playSound(dSHAKEClip);
+	                	playSound(dSHAKE);
 	                	break;
                 	case 'q':
-	                	playSound(Cheetah2Clip);
+	                	playSound(Cheetah2);
 	                	break;
                 	case 'w':
-	                	playSound(bearroarClip);
+	                	playSound(bearroar);
 	                	break;
                 	case 'e':
-	                	playSound(camel2Clip);
+	                	playSound(camel2);
 	                	break;
                 	case 'r':
-	                	playSound(bowling2Clip);
+	                	playSound(bowling2);
 	                	break;
                 	case 't':
-	                	playSound(barkClip);
+	                	playSound(bark);
 	                	break;
                 	case 'a':
-	                	playSound(ballhitcheerClip);
+	                	playSound(ballhitcheer);
 	                	break;
                 	case 's':
-	                	playSound(baboon1Clip);
+	                	playSound(baboon1);
 	                	break;
                 	case 'g':
-	                	playSound(golfNoiseClip);
+	                	playSound(golfNoise);
 	                	break;
                 	case 'j':
-	                	playSound(hiHatNoiseClip);
+	                	playSound(hiHatNoise);
 	                	break;
                 	case 'k':
-	                	playSound(snareNoiseClip);
+	                	playSound(snareNoise);
 	                	break;
                 	case 'l':
-	                	playSound(bassNoiseClip);
+	                	playSound(bassNoise);
 	                	break;
+	                // Start Recording
+                	case 'z':
+                		System.out.println("Start Recording");
+                		play.clear();
+                		time.clear();
+                        startTime = System.currentTimeMillis();    
+                		break;
+                	// Stop Recording
+                	case 'x':
+                		System.out.println("Stop Recording");
+                        startTime = -1;
+                		break;
+                	// Playback Recording
+                	case 'c':
+                		System.out.println("Playback");
+                		if (startTime <= 0)
+                		{
+	                		double replayStart = System.currentTimeMillis();
+	
+	                        int i = 0;
+	                        while(i < play.size())
+	                        {
+                                if (time.get(i) - startTime < System.currentTimeMillis() - replayStart)
+                                {
+                                    playSound(play.get(i));
+                                    i++;
+                                }
+	                        }
+                		}
+                		break;
+                	// TODO: Toggle loop
+                	case 'v':
+                		double maxTime = time.get(0) - startTime;
+                        int k = 0;
+                        while (k < time.size() - 1)
+                        {
+                            if ((time.get(k + 1) - time.get(k)) > maxTime)
+                            {
+                                maxTime = time.get(k + 1) - time.get(k);
+                            }
+                            k++;
+                        }
+                        double maxTimeUp = Math.round(maxTime/1000) + 1;
+                        int j = 0;
+                        while (j < maxTimeUp)
+						{
+						    double replayStart = System.currentTimeMillis();
+						    int i = 0;
+						    while(i < play.size())
+						    {
+						        if (time.get(i) - startTime < System.currentTimeMillis() - replayStart)
+						        {
+						            playSound(play.get(i));
+						            i++;
+						        }
+						    }
+						    j++;
+						}
+                        break;
                 }
             }
 

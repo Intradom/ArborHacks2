@@ -46,16 +46,11 @@ public class Playback
                 if (userInput.equals("replay"))
                 {
                     double replayStart = System.currentTimeMillis();
-<<<<<<< Updated upstream
+
                     int i = 0;
                     while(i < play.size())
                     {
                             if (time.get(i) - startTime < System.currentTimeMillis() - replayStart)
-=======
-                    while(i < play.size())
-                    {
-                            if (time.get(i)- startTime < System.currentTimeMillis() - replayStart)
->>>>>>> Stashed changes
                             {
                                 System.out.println(play.get(i));
                                 i++;
