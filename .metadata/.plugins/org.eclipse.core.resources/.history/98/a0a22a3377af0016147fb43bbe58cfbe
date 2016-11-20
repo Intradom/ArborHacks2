@@ -81,13 +81,13 @@ public class Main extends JPanel
 	final File snareNoise = new File("../SoundFiles/Drum/Snare_Drum.wav");
 	final File bassNoise = new File("../SoundFiles/Drum/32594__franticaerostat__bassbottle.wav");
 	final File specialSound1 = new File("../SoundFiles/special/Fake Applause-SoundBible.com-1541144825.wav"); 
-	final File specialSound2 = new File("../SoundFiles/special/Balloon Popping-SoundBible.com-1247261379.wav");
-	final File specialSound3 = new File("../SoundFiles/special/bark.wav");
-	final File specialSound4 = new File("../SoundFiles/special/pin_dropping-Brian_Rocca-2084700791.wav");
-	final File specialSound5 = new File("../SoundFiles/special/fire_bow_sound-mike-koenig.wav");
-	final File specialSound6 = new File("../SoundFiles/special/glass_ping-Go445-1207030150.wav");
-	final File specialSound7 = new File("../SoundFiles/special/golf_swing.wav");
-	final File specialSound8 = new File("../SoundFiles/special/sms-alert-1-daniel_simon.wav");
+	final File specialSound2 = new File("../SoundFiles/special/");
+	final File specialSound3 = new File("../SoundFiles/special/");
+	final File specialSound4 = new File("../SoundFiles/special/");
+	final File specialSound5 = new File("../SoundFiles/special/");
+	final File specialSound6 = new File("../SoundFiles/special/");
+	final File specialSound7 = new File("../SoundFiles/special/");
+	final File specialSound8 = new File("../SoundFiles/special/");
 
 	ArrayList<File> playOld = new ArrayList<File>();
 	ArrayList<Double> timeOld = new ArrayList<Double>();

@@ -83,7 +83,7 @@ public class Main extends JPanel
 	final File specialSound1 = new File("../SoundFiles/special/Fake Applause-SoundBible.com-1541144825.wav"); 
 	final File specialSound2 = new File("../SoundFiles/special/Balloon Popping-SoundBible.com-1247261379.wav");
 	final File specialSound3 = new File("../SoundFiles/special/bark.wav");
-	final File specialSound4 = new File("../SoundFiles/special/pin_dropping-Brian_Rocca-2084700791.wav");
+	final File specialSound4 = new File("../SoundFiles/special/Blop-Mark_DiAngelo-79054334.wav");
 	final File specialSound5 = new File("../SoundFiles/special/fire_bow_sound-mike-koenig.wav");
 	final File specialSound6 = new File("../SoundFiles/special/glass_ping-Go445-1207030150.wav");
 	final File specialSound7 = new File("../SoundFiles/special/golf_swing.wav");
