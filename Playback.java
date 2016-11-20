@@ -44,24 +44,53 @@ public class Playback
                     }
                 }
             
-                if (userInput.equals("print"))
+                if (userInput.equals("replay"))
                 {
                     double replayStart = System.currentTimeMillis();
-                    while(play.size() > 0)
+                    int i = 0;
+                    while(i < play.size())
                     {
-                            if (time.get(0)- startTime < System.currentTimeMillis() - replayStart)
+                            if (time.get(i) - startTime < System.currentTimeMillis() - replayStart)
                             {
-                                System.out.println(play.get(0));
-                                play.remove(0);
-                                time.remove(0);
+                                System.out.println(play.get(i));
+                                i++;
                             }
+                    } 
+                }
+                else if (userInput.equals("loop"))
+                {
+                    double maxTime = time.get(0) - startTime;
+                    int k = 0;
+                    while (k < time.size() - 1)
+                    {
+                        if ((time.get(k + 1) - time.get(k)) > maxTime)
+                        {
+                            maxTime = time.get(k + 1) - time.get(k);
+                            
+                        }
+                        k++;
                     }
-                        
-                        
-                        
-                    }
+                    double maxTimeUp = Math.round(maxTime/1000) + 1;
+                    System.out.println(maxTimeUp);
+                    int j = 0;
+                    while (j < maxTimeUp)
+                    {
+                    double replayStart = System.currentTimeMillis();
+                    int i = 0;
+                    while(i < play.size())
+                    {
+                           if (time.get(i) - startTime < System.currentTimeMillis() - replayStart)
+                            {
+                               System.out.println(play.get(i));
+                               i++;
+                            }
+                   }
+                    j++;
+                }
+                }
                 }
             }
         }
+        
     
 
