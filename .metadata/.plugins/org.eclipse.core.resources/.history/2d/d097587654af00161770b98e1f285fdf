@@ -198,10 +198,7 @@ public class Main extends JPanel
                 		break;
                 	case 'v':
                 		loop = !loop;
-                		if (loop)
-                			System.out.println("Loop on");
-                		else
-                			System.out.println("Loop off");
+                		System.out.println();
                         break;
                 	case 'b':
                 		if (playbackIndex < 0 || playbackIndex >= timeOld.size())
@@ -256,12 +253,6 @@ public class Main extends JPanel
     	        {
     	            playSound(playOld.get(playbackIndex));
     	            playbackIndex++;
-    	            
-    	            if (loop && playbackIndex >= timeOld.size())
-    	            {
-    	            	playbackIndex = 0;
-    	            	replayStart = System.currentTimeMillis();
-    	            }
     	        }
             }
             

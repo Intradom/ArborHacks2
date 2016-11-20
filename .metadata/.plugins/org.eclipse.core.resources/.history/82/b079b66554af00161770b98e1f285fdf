@@ -197,11 +197,8 @@ public class Main extends JPanel
                 			System.out.println("Can't playback recording");
                 		break;
                 	case 'v':
-                		loop = !loop;
-                		if (loop)
-                			System.out.println("Loop on");
-                		else
-                			System.out.println("Loop off");
+                		loop = !loopl
+                		System.out.println();
                         break;
                 	case 'b':
                 		if (playbackIndex < 0 || playbackIndex >= timeOld.size())
@@ -256,12 +253,6 @@ public class Main extends JPanel
     	        {
     	            playSound(playOld.get(playbackIndex));
     	            playbackIndex++;
-    	            
-    	            if (loop && playbackIndex >= timeOld.size())
-    	            {
-    	            	playbackIndex = 0;
-    	            	replayStart = System.currentTimeMillis();
-    	            }
     	        }
             }
             

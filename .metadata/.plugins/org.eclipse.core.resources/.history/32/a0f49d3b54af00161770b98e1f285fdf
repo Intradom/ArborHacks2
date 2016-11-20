@@ -44,7 +44,6 @@ public class Main extends JPanel
 	ArrayList<Double> time = new ArrayList<Double>();
     double startTime = -1;
     int playbackIndex = -1;
-    boolean loop = false;
     double replayStart;
     
 	public void playSound(File f)
@@ -196,12 +195,34 @@ public class Main extends JPanel
                 		else
                 			System.out.println("Can't playback recording");
                 		break;
+                	// TODO: Toggle loop
                 	case 'v':
-                		loop = !loop;
-                		if (loop)
-                			System.out.println("Loop on");
-                		else
-                			System.out.println("Loop off");
+                		double maxTime = time.get(0) - startTime;
+                        int k = 0;
+                        while (k < time.size() - 1)
+                        {
+                            if ((time.get(k + 1) - time.get(k)) > maxTime)
+                            {
+                                maxTime = time.get(k + 1) - time.get(k);
+                            }
+                            k++;
+                        }
+                        double maxTimeUp = Math.round(maxTime/1000) + 1;
+                        int j = 0;
+                        while (j < maxTimeUp)
+						{
+						    double replayStart = System.currentTimeMillis();
+						    int i = 0;
+						    while(i < play.size())
+						    {
+						        if (time.get(i) - startTime < System.currentTimeMillis() - replayStart)
+						        {
+						            playSound(play.get(i));
+						            i++;
+						        }
+						    }
+						    j++;
+						}
                         break;
                 	case 'b':
                 		if (playbackIndex < 0 || playbackIndex >= timeOld.size())
@@ -256,12 +277,6 @@ public class Main extends JPanel
     	        {
     	            playSound(playOld.get(playbackIndex));
     	            playbackIndex++;
-    	            
-    	            if (loop && playbackIndex >= timeOld.size())
-    	            {
-    	            	playbackIndex = 0;
-    	            	replayStart = System.currentTimeMillis();
-    	            }
     	        }
             }
             

@@ -258,10 +258,7 @@ public class Main extends JPanel
     	            playbackIndex++;
     	            
     	            if (loop && playbackIndex >= timeOld.size())
-    	            {
     	            	playbackIndex = 0;
-    	            	replayStart = System.currentTimeMillis();
-    	            }
     	        }
             }
             
