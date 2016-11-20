@@ -42,8 +42,9 @@ public class Main extends JPanel
     double startTimeOld = 0;
 	ArrayList<File> play = new ArrayList<File>();
 	ArrayList<Double> time = new ArrayList<Double>();
-    double startTime = 0;
+    double startTime = -1;
     int playbackIndex = -1;
+    double replayStart;
     
 	public void playSound(File f)
 	{	
@@ -154,24 +155,43 @@ public class Main extends JPanel
 	                	break;
 	                // Start Recording
                 	case 'z':
-                		System.out.println("Start Recording");
-                		play.clear();
-                		time.clear();
-                        startTime = System.currentTimeMillis(); 
+                		if (startTime < 0)
+                		{
+	                		System.out.println("Start recording");
+	                		play.clear();
+	                		time.clear();
+	                        startTime = System.currentTimeMillis();
+                		}
+                		else
+                			System.out.println("Currently recording");
                 		break;
                 	// Stop Recording
                 	case 'x':
-                		System.out.println("Stop Recording");
-                        startTime = -1;
-                        startTimeOld = startTime;
-                        playOld = play; // Might not be deep copy
-                        timeOld = time;
+                		if (startTime >= 0)
+                		{
+	                		System.out.println("Stop recording");
+	                		playbackIndex = -1;
+	                        startTime = -1;
+	                        startTimeOld = startTime;
+	                        playOld.clear();
+	                        timeOld.clear();
+	                        for (int i = 0; i < time.size(); i++)
+	                        {
+	                        	playOld.add(play.get(i));
+	                        	timeOld.add(time.get(i));
+	                        }
+                		}
+                		else
+                			System.out.println("Not recording");
                 		break;
                 	// Playback Recording
                 	case 'c':
                 		System.out.println("Playback");
-                		if (startTime <= 0 && playbackIndex <= 0)
+                		if (playbackIndex < 0 || playbackIndex >= timeOld.size())
+                		{
 	                		playbackIndex = 0;
+	                        replayStart = System.currentTimeMillis();
+                		}
                 		else
                 			System.out.println("Can't playback recording");
                 		break;
@@ -204,6 +224,34 @@ public class Main extends JPanel
 						    j++;
 						}
                         break;
+                	case 'b':
+                		if (playbackIndex < 0 || playbackIndex >= timeOld.size())
+                		{
+	                		System.out.println("Decrease tempo by 2");
+							int i = 0;
+							while(i < timeOld.size())
+							{
+								timeOld.set(i, timeOld.get(i)*2);
+						        i++;
+							}
+                		}
+                		else
+                			System.out.println("Can't change tempo during playback");
+                		break;
+                	case 'n':
+                		if (playbackIndex < 0 || playbackIndex >= timeOld.size())
+                		{
+	                		System.out.println("Increase tempo by 2");
+	                		int i = 0;
+	                        while(i < timeOld.size())
+	                        {
+	                    		timeOld.set(i, timeOld.get(i)/2);
+	                            i++;
+	                        } 
+	                        break;
+                		}
+                		else
+                			System.out.println("Can't change tempo during playback");
                 }
             }
 
@@ -225,9 +273,6 @@ public class Main extends JPanel
         	// If playback enabled, play the sounds in it
             if (playbackIndex >= 0 && playbackIndex < timeOld.size())
             {
-            	System.out.println(playbackIndex);
-                double replayStart = System.currentTimeMillis();
-
     	        if (timeOld.get(playbackIndex) - startTimeOld < System.currentTimeMillis() - replayStart)
     	        {
     	            playSound(playOld.get(playbackIndex));
@@ -236,7 +281,7 @@ public class Main extends JPanel
             }
             
             try {
-				Thread.sleep(10);
+				Thread.sleep(1);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
